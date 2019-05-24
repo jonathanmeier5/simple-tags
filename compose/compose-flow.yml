@@ -1,6 +1,7 @@
 profiles:
   local:
     - docker-compose.yml
+    - local
 
 tasks:
   hello:

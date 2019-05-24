@@ -1,0 +1,5 @@
+services:
+  app:
+    volumes:
+      - ../:/opt/project
+    working_dir: /opt/project
