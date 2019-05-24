@@ -1,0 +1,7 @@
+profiles:
+  local:
+    - docker-compose.yml
+
+tasks:
+  hello:
+    command: compose-flow compose run --rm app /bin/bash -c 'echo hello' 
