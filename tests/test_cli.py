@@ -1,25 +1,33 @@
-import mock
 import shlex
 
+import pytest
+import click
 from click.testing import CliRunner
-from src.training_tagger.cli import workflow
+# from src.training_tagger.cli import workflow
 
-import contextmanager
+@pytest.fixture
+def input_fixture_wrapper():
+    def input_fixture(input_str: str = 'j\nk\nq\n'):
+        return input_str
+    return input_fixture
 
-@contextmanager
-def input_patch(input_args: list = [])
-    input_args = [''.join([x, '\n']) for x in input_args]
-    with mock.patch('__builtins.input__', side_effect=input_args) as p:
-        yield p
- 
+@click.command()
+def my_cmd():
+    while True:
+        input_str = input()
+        click.echo(f'foo={input_str}')
+        if input_str == 'q':
+            break
 
-def test_e2e_happy_path_cli_webpage_binary(monkeypatch):
+
+def test_e2e_happy_path_cli_webpage_binary(input_fixture_wrapper):
     """Test happy path for cli webpage binary training set command"""
     runner = CliRunner()
-    with mock.patch('__builtins__.input', side_effect
-    with input_patch(input_args=['j', 'q']) as p:
-        result = runner.invoke(workflow, 
-            shlex.split('webpage binary ./files/webpage-binary-two-line.csv')
-            )
-        assert result.output == 'foobar'
-        assert result.
+    result = runner.invoke(
+        my_cmd, 
+        input=input_fixture_wrapper()
+    )
+    #shlex.split('webpage binary ./files/webpage-binary-two-line.csv'),
+    assert result.exit_code == 0
+    assert result.output == 'foo=j\nfoo=k\nfoo=q\n'
+
