@@ -1,0 +1,9 @@
+README.md
+setup.py
+src/cli/__init__.py
+src/simple_trainer.egg-info/PKG-INFO
+src/simple_trainer.egg-info/SOURCES.txt
+src/simple_trainer.egg-info/dependency_links.txt
+src/simple_trainer.egg-info/entry_points.txt
+src/simple_trainer.egg-info/requires.txt
+src/simple_trainer.egg-info/top_level.txt
